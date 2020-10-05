@@ -13,7 +13,6 @@ env:
   - COMPOSER_FLAGS="--prefer-stable --prefer-dist"
 
 php:
-  - 8.0snapshot
   - nightly
 
 matrix:
