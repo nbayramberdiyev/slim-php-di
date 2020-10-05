@@ -24,15 +24,15 @@
   "minimum-stability": "dev",
   "prefer-stable": true,
   "require": {
-    "php": "^7.1",
+    "php": "^7.4|^8.0",
     "ext-json": "*",
-    "php-di/php-di": "^6.0.5",
+    "php-di/php-di": "7.0.0-beta2",
     "slim/slim": "^4.2"
   },
   "require-dev": {
-    "brainmaestro/composer-git-hooks": "^2.1",
-    "friendsofphp/php-cs-fixer": "^2.0",
-    "infection/infection": "^0.13|^0.15|^0.16",
+    "brainmaestro/composer-git-hooks": "^2.8",
+    "friendsofphp/php-cs-fixer": "^2.16",
+    "infection/infection": "^0.13|^0.15",
     "laminas/laminas-diactoros": "^2.0",
     "overtrue/phplint": "^1.2",
     "phpmd/phpmd": "^2.8",

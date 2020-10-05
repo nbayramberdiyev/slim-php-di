@@ -24,55 +24,28 @@ use Psr\Container\ContainerInterface;
  */
 class Configuration
 {
-    /**
-     * @var string
-     */
-    protected $containerClass = Container::class;
+    protected string $containerClass = Container::class;
 
-    /**
-     * @var bool
-     */
-    protected $useAutoWiring = true;
+    protected bool $useAutoWiring = true;
 
-    /**
-     * @var bool
-     */
-    protected $useAnnotations = false;
+    protected bool $useAnnotations = false;
 
-    /**
-     * @var bool
-     */
-    protected $useDefinitionCache = false;
+    protected bool $useAttributes = false;
 
-    /**
-     * @var bool
-     */
-    protected $ignorePhpDocErrors = false;
+    protected bool $useDefinitionCache = false;
 
-    /**
-     * @var ContainerInterface
-     */
-    protected $wrapContainer;
+    protected ?ContainerInterface $wrapContainer = null;
 
-    /**
-     * @var string
-     */
-    protected $proxiesPath;
+    protected ?string $proxiesPath = null;
 
-    /**
-     * @var string
-     */
-    protected $compilationPath;
+    protected ?string $compilationPath = null;
 
-    /**
-     * @var string
-     */
-    protected $compiledContainerClass = AbstractCompiledContainer::class;
+    protected string $compiledContainerClass = AbstractCompiledContainer::class;
 
     /**
      * @var string[]
      */
-    protected $definitions = [];
+    protected array $definitions = [];
 
     /**
      * Configuration constructor.
@@ -155,7 +128,7 @@ class Configuration
      *
      * @return bool
      */
-    public function doesUseAutowiring(): bool
+    public function doesUseAutoWiring(): bool
     {
         return $this->useAutoWiring;
     }
@@ -199,6 +172,30 @@ class Configuration
     }
 
     /**
+     * Are attributes enabled.
+     *
+     * @return bool
+     */
+    public function doesUseAttributes(): bool
+    {
+        return $this->useAttributes;
+    }
+
+    /**
+     * Set attributes.
+     *
+     * @param bool $useAttributes
+     *
+     * @return static
+     */
+    public function setUseAttributes(bool $useAttributes): self
+    {
+        $this->useAttributes = $useAttributes;
+
+        return $this;
+    }
+
+    /**
      * Is definition cache used.
      *
      * @return bool
@@ -218,30 +215,6 @@ class Configuration
     public function setUseDefinitionCache(bool $useDefinitionCache): self
     {
         $this->useDefinitionCache = $useDefinitionCache;
-
-        return $this;
-    }
-
-    /**
-     * Are PhpDoc errors ignored.
-     *
-     * @return bool
-     */
-    public function doesIgnorePhpDocErrors(): bool
-    {
-        return $this->ignorePhpDocErrors;
-    }
-
-    /**
-     * Set ignoring PhpDoc errors.
-     *
-     * @param bool $ignorePhpDocErrors
-     *
-     * @return static
-     */
-    public function setIgnorePhpDocErrors(bool $ignorePhpDocErrors): self
-    {
-        $this->ignorePhpDocErrors = $ignorePhpDocErrors;
 
         return $this;
     }

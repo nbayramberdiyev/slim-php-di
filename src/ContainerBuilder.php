@@ -60,9 +60,9 @@ class ContainerBuilder
     {
         $containerBuilder = new DIContainerBuilder($configuration->getContainerClass());
 
-        $containerBuilder->useAutowiring($configuration->doesUseAutowiring());
+        $containerBuilder->useAutowiring($configuration->doesUseAutoWiring());
         $containerBuilder->useAnnotations($configuration->doesUseAnnotations());
-        $containerBuilder->ignorePhpDocErrors($configuration->doesIgnorePhpDocErrors());
+        $containerBuilder->useAttributes($configuration->doesUseAttributes());
 
         if ($configuration->doesUseDefinitionCache()) {
             $containerBuilder->enableDefinitionCache();
