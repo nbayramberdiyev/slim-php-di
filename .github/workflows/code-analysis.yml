@@ -5,6 +5,7 @@ on:
   push:
     branches:
       - master
+      - 4.x
 
 env:
   COMPOSER_ROOT_VERSION: dev-master

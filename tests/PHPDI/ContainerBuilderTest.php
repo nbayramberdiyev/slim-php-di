@@ -60,7 +60,7 @@ class ContainerBuilderTest extends TestCase
             'containerClass' => Container::class,
             'useAutoWiring' => true,
             'useAnnotations' => true,
-            'useAttributes' => \version_compare(\PHP_VERSION, '8.0.0') >= 0,
+            'useAttributes' => true,
             'useDefinitionCache' => true,
             'wrapContainer' => $containerStub,
             'proxiesPath' => \sys_get_temp_dir(),
