@@ -23,6 +23,8 @@ use Psr\Container\ContainerInterface;
 
 /**
  * Configuration tests.
+ *
+ * @SuppressWarnings(PHPMD.TooManyPublicMethods)
  */
 class ConfigurationTest extends TestCase
 {

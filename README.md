@@ -2,11 +2,6 @@
 [![Latest Version](https://img.shields.io/packagist/vpre/juliangut/slim-php-di.svg?style=flat-square)](https://packagist.org/packages/juliangut/slim-php-di)
 [![License](https://img.shields.io/github/license/juliangut/slim-php-di.svg?style=flat-square)](https://github.com/juliangut/slim-php-di/blob/master/LICENSE)
 
-[![Build Status](https://img.shields.io/travis/juliangut/slim-php-di.svg?style=flat-square)](https://travis-ci.org/juliangut/slim-php-di)
-[![Style Check](https://styleci.io/repos/40728455/shield)](https://styleci.io/repos/40728455)
-[![Code Quality](https://img.shields.io/scrutinizer/g/juliangut/slim-php-di.svg?style=flat-square)](https://scrutinizer-ci.com/g/juliangut/slim-php-di)
-[![Code Coverage](https://img.shields.io/coveralls/juliangut/slim-php-di.svg?style=flat-square)](https://coveralls.io/github/juliangut/slim-php-di)
-
 [![Total Downloads](https://img.shields.io/packagist/dt/juliangut/slim-php-di.svg?style=flat-square)](https://packagist.org/packages/juliangut/slim-php-di/stats)
 [![Monthly Downloads](https://img.shields.io/packagist/dm/juliangut/slim-php-di.svg?style=flat-square)](https://packagist.org/packages/juliangut/slim-php-di/stats)
 
@@ -78,10 +73,10 @@ $container = ContainerBuilder::build($configuration);
 
 #### PHP-DI settings
 
-* `useAutoWiring` whether or not to use auto wiring (true by default)
-* `useAnnotations` whether or not to use annotations (false by default)
-* `useAttributes` whether or not to use attributes (false by default)
-* `useDefinitionCache` whether or not to use definition cache (false by default)
+* `useAutoWiring` whether to use auto wiring (true by default)
+* `useAnnotations` whether to use annotations (false by default)
+* `useAttributes` whether to use attributes (false by default)
+* `useDefinitionCache` whether to use definition cache (false by default)
 * `wrapContainer` wrapping container (none by default)
 * `proxiesPath` path where PHP-DI creates its proxy files (none by default)
 * `compilationPath` path to where PHP-DI creates its compiled container (none by default)

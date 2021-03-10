@@ -32,7 +32,7 @@ class CallableResolver implements AdvancedCallableResolverInterface
     /**
      * @var InvokerResolver
      */
-    private $callableResolver;
+    private InvokerResolver $callableResolver;
 
     /**
      * CallableResolver constructor.
@@ -108,13 +108,13 @@ class CallableResolver implements AdvancedCallableResolverInterface
      *
      * @return callable
      */
-    protected function resolveCallable($resolvable, $toResolve): callable
+    protected function resolveCallable(mixed $resolvable, mixed $toResolve): callable
     {
         try {
             return $this->callableResolver->resolve($resolvable);
         } catch (NotCallableException $exception) {
             if (\is_callable($toResolve) || \is_array($toResolve)) {
-                $callable = \json_encode($toResolve);
+                $callable = \json_encode($toResolve, \JSON_THROW_ON_ERROR);
             } elseif (\is_object($toResolve)) {
                 $callable = \get_class($toResolve);
             } else {
@@ -133,7 +133,7 @@ class CallableResolver implements AdvancedCallableResolverInterface
      *
      * @return string|string[]
      */
-    private function callableFromStringNotation(string $toResolve, ?string $defaultMethod = null)
+    private function callableFromStringNotation(string $toResolve, ?string $defaultMethod = null): array | string
     {
         if (\preg_match(static::CALLABLE_PATTERN, $toResolve, $matches) === 1) {
             return [$matches[1], $matches[2]];

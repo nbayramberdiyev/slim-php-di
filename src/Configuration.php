@@ -24,6 +24,9 @@ use Psr\Container\ContainerInterface;
  */
 class Configuration
 {
+    /**
+     * @var class-string<DIContainer>
+     */
     protected string $containerClass = Container::class;
 
     protected bool $useAutoWiring = true;
@@ -40,6 +43,9 @@ class Configuration
 
     protected ?string $compilationPath = null;
 
+    /**
+     * @var class-string<DICompiledContainer>
+     */
     protected string $compiledContainerClass = AbstractCompiledContainer::class;
 
     /**
@@ -54,7 +60,7 @@ class Configuration
      *
      * @throws \InvalidArgumentException
      */
-    public function __construct($configurations = [])
+    public function __construct(mixed $configurations = [])
     {
         if ($configurations instanceof \Traversable) {
             $configurations = \iterator_to_array($configurations);
@@ -89,7 +95,7 @@ class Configuration
     /**
      * Get container class.
      *
-     * @return string
+     * @return class-string<DIContainer>
      */
     public function getContainerClass(): string
     {
@@ -118,6 +124,7 @@ class Configuration
             );
         }
 
+        // @var @var class-string<DIContainer> $containerClass
         $this->containerClass = $containerClass;
 
         return $this;
@@ -309,7 +316,7 @@ class Configuration
     /**
      * Get compiled container class.
      *
-     * @return string
+     * @return class-string<DICompiledContainer>
      */
     public function getCompiledContainerClass(): string
     {
@@ -338,6 +345,7 @@ class Configuration
             );
         }
 
+        // @var class-string<DICompiledContainer> $compiledContainerClass
         $this->compiledContainerClass = $compiledContainerClass;
 
         return $this;
@@ -362,7 +370,7 @@ class Configuration
      *
      * @return static
      */
-    public function setDefinitions($definitions): self
+    public function setDefinitions(mixed $definitions): self
     {
         if (\is_string($definitions)) {
             $definitions = [$definitions];

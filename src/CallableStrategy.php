@@ -26,12 +26,12 @@ class CallableStrategy implements InvocationStrategyInterface
     /**
      * @var InvokerInterface
      */
-    private $invoker;
+    private InvokerInterface $invoker;
 
     /**
      * @var bool
      */
-    protected $appendRouteArguments;
+    protected bool $appendRouteArguments;
 
     /**
      * CallableStrategy constructor.

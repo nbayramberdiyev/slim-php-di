@@ -26,22 +26,22 @@ trait ContainerTrait
      *
      * @see \DI\Container::get
      *
-     * @param string $name
+     * @param string $id
      *
      * @throws DependencyException
      * @throws NotFoundException
      *
      * @return mixed
      */
-    public function get($name)
+    public function get($id): mixed
     {
         try {
-            return \strpos($name, '.') === false
-                ? parent::get($name)
-                : $this->getRecursive($name);
+            return !\str_contains($id, '.')
+                ? parent::get($id)
+                : $this->getRecursive($id);
         } catch (NotFoundException $exception) {
             throw new NotFoundException(
-                \sprintf('No entry or class found for "%s"', $name),
+                \sprintf('No entry or class found for "%s"', $id),
                 $exception->getCode(),
                 $exception
             );
@@ -55,20 +55,20 @@ trait ContainerTrait
      *
      * @see \DI\Container::has
      *
-     * @param string $name
+     * @param string $id
      *
      * @throws \InvalidArgumentException
      *
      * @return bool
      */
-    public function has($name): bool
+    public function has($id): bool
     {
-        if (\strpos($name, '.') === false) {
-            return parent::has($name);
+        if (!\str_contains($id, '.')) {
+            return parent::has($id);
         }
 
         try {
-            $this->getRecursive($name);
+            $this->getRecursive($id);
         } catch (\Throwable $exception) {
             // @ignoreException
             return false;
@@ -85,7 +85,7 @@ trait ContainerTrait
      *
      * @return mixed
      */
-    private function getRecursive(string $key, ?array $parent = null)
+    private function getRecursive(string $key, ?array $parent = null): mixed
     {
         if ($parent !== null ? \array_key_exists($key, $parent) : parent::has($key)) {
             return $parent !== null ? $parent[$key] : parent::get($key);
@@ -122,7 +122,7 @@ trait ContainerTrait
      *
      * @deprecated since 3.0
      */
-    public function offsetSet($name, $value): void
+    public function offsetSet(mixed $name, mixed $value): void
     {
         @\trigger_error(
             'ArrayAccess is deprecated since 3.0, use PSR-11 and PHP-DI methods instead.',
@@ -144,7 +144,7 @@ trait ContainerTrait
      *
      * @return mixed
      */
-    public function offsetGet($name)
+    public function offsetGet(mixed $name): mixed
     {
         @\trigger_error(
             'ArrayAccess is deprecated since 3.0, use PSR-11 and PHP-DI methods instead.',
@@ -165,7 +165,7 @@ trait ContainerTrait
      *
      * @return bool
      */
-    public function offsetExists($name): bool
+    public function offsetExists(mixed $name): bool
     {
         @\trigger_error(
             'ArrayAccess is deprecated since 3.0, use PSR-11 and PHP-DI methods instead.',
@@ -184,7 +184,7 @@ trait ContainerTrait
      *
      * @SuppressWarnings(PHPMD.UnusedFormalParameter)
      */
-    public function offsetUnset($name): void
+    public function offsetUnset(mixed $name): void
     {
         @\trigger_error(
             'ArrayAccess is deprecated since 3.0, use PSR-11 and PHP-DI methods instead.',
@@ -200,7 +200,7 @@ trait ContainerTrait
      * @param string $name
      * @param mixed  $value
      */
-    public function __set(string $name, $value): void
+    public function __set(string $name, mixed $value): void
     {
         @\trigger_error(
             'Magic methods are deprecated since 3.0, use PSR-11 and PHP-DI methods instead.',
@@ -220,7 +220,7 @@ trait ContainerTrait
      *
      * @return mixed
      */
-    public function __get(string $name)
+    public function __get(string $name): mixed
     {
         @\trigger_error(
             'Magic methods are deprecated since 3.0, use PSR-11 and PHP-DI methods instead.',
